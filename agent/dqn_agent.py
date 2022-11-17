@@ -143,7 +143,6 @@ class DqnAgent:
             clear_output(wait=True)
             learning_curve = Plots(fig=plt.figure(figsize=(12, 6)), subplot_num=2, position=(1, 2), suptitle="Learning Curve")
             plot(learning_curve, self.reward_sum_list, self.loss_list)
-      
     
     def load_model(self):
         if not os.path.isfile(self.save_path): return
