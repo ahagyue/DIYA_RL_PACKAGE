@@ -44,10 +44,3 @@ class AtariDQN(Qvalue):
         x = self.conv_layer(x)
         x = torch.flatten(x, 1)
         return self.fc_layer(x)
-    
-    def action(self, x, epsilon) -> int:
-        if random.random() < epsilon:
-            act = random.randint(0, self.action_number - 1)
-        else:
-            act = self.forward(x).argmax().item()
-        return act

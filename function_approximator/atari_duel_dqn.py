@@ -11,8 +11,6 @@
 import torch
 import torch.nn as nn
 
-import random
-
 from function_approximator.duel_net import DuelNet
 from function_approximator.q_interface import Qvalue
 
@@ -45,10 +43,3 @@ class AtariDuelDQN(Qvalue):
         x = self.conv_layer(x)
         x = self.fc_layer(torch.flatten(x, 1))
         return self.duel_net(x)
-
-    def action(self, x, epsilon) -> int:
-        if random.random() < epsilon:
-            act = random.randint(0, self.action_number - 1)
-        else:
-            act = self.forward(x).argmax().item()
-        return act
