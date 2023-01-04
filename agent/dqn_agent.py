@@ -21,7 +21,7 @@ from function_approximator.q_interface import Qvalue
 
 import os
 from IPython.display import clear_output
-from typing import Callable, Dict, Tuple
+from typing import Callable, Dict
 
 class DqnAgent:
     def __init__(self, 
@@ -146,7 +146,7 @@ class DqnAgent:
     
     def load_model(self):
         if not os.path.isfile(self.save_path): return
-        checkpoint = torch.load(self.save_path)
+        checkpoint = torch.load(self.save_path, map_location=self.args["device"])
         self.start_episode = checkpoint["episode"] + 1
         self.frame_num = checkpoint["frame_num"]
         self.curr_q_val.load_state_dict(checkpoint["current_model_state_dict"])

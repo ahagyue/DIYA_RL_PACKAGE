@@ -28,3 +28,9 @@ def plot_learning_curve(sketch_book: Plots, rewards: List=None, losses: List=Non
                                         title="loss", x_label="iteration", y_label="loss", graph_name=legend
                                     )
     plt.pause(0.1)
+
+def smoothing(array:list, window:int =  30):
+    ret = []
+    for i in range(window//2, len(array) - window//2):
+        ret.append(sum(array[i - window//2 : i + window//2]) / window)
+    return ret
